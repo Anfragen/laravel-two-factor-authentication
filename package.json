@@ -1,0 +1,11 @@
+{
+    "private": true,
+    "devDependencies": {
+        "commitizen": "^4.2.5"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    }
+}
