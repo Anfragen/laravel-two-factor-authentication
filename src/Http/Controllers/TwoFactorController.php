@@ -37,7 +37,7 @@ class TwoFactorController extends Controller
      */
     public function enable(EnableRequest $request): JsonResponse
     {
-        Gate::authorize('two-factor-disabled');
+        Gate::authorize('two-factor-enable');
 
         app(EnableTwoFactor::class)->handle($request->user(), $request->type);
 
@@ -49,7 +49,7 @@ class TwoFactorController extends Controller
      */
     public function confirm(ConfirmRequest $request): JsonResponse
     {
-        Gate::authorize('two-factor-enabled');
+        Gate::authorize('two-factor-confirm');
 
         app(ConfirmTwoFactor::class)->handle($request->user(), $request->code);
 
@@ -61,7 +61,7 @@ class TwoFactorController extends Controller
      */
     public function disable(Request $request): JsonResponse
     {
-        Gate::authorize('two-factor-confirmed');
+        Gate::authorize('two-factor-disable');
 
         app(DisableTwoFactor::class)->handle($request->user());
 

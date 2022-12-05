@@ -12,17 +12,17 @@ class RegisterPermissions
      */
     public static function register(): void
     {
-        Gate::define('two-factor-disabled', function ($user) {
+        Gate::define('two-factor-enable', function ($user) {
             return is_null($user->two_factor_confirmed_at);
         });
 
-        Gate::define('two-factor-enabled', function ($user) {
+        Gate::define('two-factor-confirm', function ($user) {
             return !is_null($user->two_factor_type)
                 && !is_null($user->two_factor_secret)
                 && is_null($user->two_factor_confirmed_at);
         });
 
-        Gate::define('two-factor-confirmed', function ($user) {
+        Gate::define('two-factor-disable', function ($user) {
             return !is_null($user->two_factor_type)
                 && !is_null($user->two_factor_secret)
                 && !is_null($user->two_factor_confirmed_at);
