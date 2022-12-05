@@ -15,7 +15,6 @@ class DisableTwoFactor
             'two_factor_recovery_codes' => null,
             'two_factor_created_at'     => null,
             'two_factor_confirmed_at'   => null,
-            'two_factor_remember_at'    => null,
         ])->save();
     }
 }

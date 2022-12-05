@@ -17,7 +17,6 @@ return new class () extends Migration {
                 $table->text('two_factor_recovery_codes')->nullable();
                 $table->timestamp('two_factor_created_at')->nullable();
                 $table->timestamp('two_factor_confirmed_at')->nullable();
-                $table->timestamp('two_factor_remember_at')->nullable();
             });
         });
     }
@@ -34,7 +33,6 @@ return new class () extends Migration {
                 'two_factor_recovery_codes',
                 'two_factor_created_at',
                 'two_factor_confirmed_at',
-                'two_factor_remember_at',
             ]);
         });
     }

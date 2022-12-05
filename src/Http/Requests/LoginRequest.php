@@ -32,10 +32,6 @@ class LoginRequest extends FormRequest
                 'string',
                 'size:21',
             ],
-            // 'remember' => [
-            //     'nullable',
-            //     'boolean',
-            // ],
         ];
     }
 

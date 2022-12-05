@@ -2,11 +2,11 @@
 
 namespace Anfragen\TwoFactor;
 
-use Anfragen\TwoFactor\Enum\TwoFactorType;
 use Illuminate\Support\{ServiceProvider, Str};
-use Illuminate\Support\Facades\{Event, Gate};
+use Illuminate\Support\Facades\Event;
 use Anfragen\TwoFactor\Http\Middleware\{CheckTwoFactorConfirmed, CheckTwoFactorRequired};
 use Anfragen\TwoFactor\Listeners\TwoFactorListener;
+use Anfragen\TwoFactor\Provider\RegisterPermissions;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Routing\Router;
 
@@ -25,9 +25,9 @@ class TwoFactorServiceProvider extends ServiceProvider
 
         $this->registerMiddleware();
 
-        $this->registerGates();
-
         $this->registerMacros();
+
+        RegisterPermissions::register();
     }
 
     /**
@@ -67,38 +67,6 @@ class TwoFactorServiceProvider extends ServiceProvider
 
         $router->aliasMiddleware('two-factor.required', CheckTwoFactorRequired::class);
         $router->aliasMiddleware('two-factor.confirmed', CheckTwoFactorConfirmed::class);
-    }
-
-    /**
-     * Configure the package's gates.
-     */
-    private function registerGates(): void
-    {
-        Gate::define('two-factor-disabled', function ($user) {
-            return is_null($user->two_factor_confirmed_at);
-        });
-
-        Gate::define('two-factor-enabled', function ($user) {
-            return !is_null($user->two_factor_type)
-                && !is_null($user->two_factor_secret)
-                && is_null($user->two_factor_confirmed_at);
-        });
-
-        Gate::define('two-factor-confirmed', function ($user) {
-            return !is_null($user->two_factor_type)
-                && !is_null($user->two_factor_secret)
-                && !is_null($user->two_factor_confirmed_at);
-        });
-
-        Gate::define('two-factor-app', function ($user) {
-            return $user->two_factor_type === TwoFactorType::APP->value
-                && !is_null($user->two_factor_secret);
-        });
-
-        Gate::define('two-factor-sms-or-email', function ($user) {
-            return $user->two_factor_type !== TwoFactorType::APP->value
-                && !is_null($user->two_factor_secret);
-        });
     }
 
     /**

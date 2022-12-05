@@ -62,7 +62,6 @@ class EnableTwoFactor
             'two_factor_recovery_codes' => $codes,
             'two_factor_created_at'     => null,
             'two_factor_confirmed_at'   => null,
-            'two_factor_remember_at'    => null,
         ])->save();
     }
 
@@ -75,7 +74,6 @@ class EnableTwoFactor
             'two_factor_type'         => $this->type,
             'two_factor_created_at'   => null,
             'two_factor_confirmed_at' => null,
-            'two_factor_remember_at'  => null,
         ])->save();
 
         app(SendLoginCode::class)->handle($this->user->refresh());
