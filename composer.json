@@ -1,6 +1,6 @@
 {
     "name": "anfragen/laravel-2fa-breeze",
-    "description": "Building 2FA functionality for the Laravel Breeze API version",
+    "description": "Building 2FA functionality for the Laravel.",
     "keywords": [
         "anfragen",
         "laravel",
@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php" : "^8.0|^8.1",
+        "php": "^8.0|^8.1",
         "laravel/framework": "^9.0",
         "pragmarx/google2fa": "^8.0",
         "bacon/bacon-qr-code": "^2.0",
