@@ -1,5 +1,5 @@
 {
-    "name": "anfragen/laravel-2fa-breeze",
+    "name": "anfragen/laravel-two-factor-authentication",
     "description": "Building 2FA functionality for the Laravel.",
     "keywords": [
         "anfragen",
@@ -8,7 +8,7 @@
         "2fa",
         "auth"
     ],
-    "homepage": "https://github.com/Anfragen/laravel-2fa-breeze",
+    "homepage": "https://github.com/Anfragen/laravel-two-factor-authentication",
     "license": "MIT",
     "authors": [
         {
